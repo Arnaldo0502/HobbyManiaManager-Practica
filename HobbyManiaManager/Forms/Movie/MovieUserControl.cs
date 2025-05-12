@@ -13,12 +13,17 @@ namespace HobbyManiaManager
         private CultureInfo cultureInfo;
         private RentalService service;
         private Movie Movie;
+        private Customer Customer;
+        private CustomersRepository customersRepository;
+
 
         public MovieUserControl()
         {
             InitializeComponent();
             this.cultureInfo = new CultureInfo("es-ES");
             this.service = new RentalService();
+            customersRepository = CustomersRepository.Instance;
+
         }
 
         public void Load(Movie movie)
@@ -70,7 +75,7 @@ namespace HobbyManiaManager
             {
                 this.buttonStartEndRent.Text = "End Rent";
                 this.pictureBoxAvailable.BackColor = Color.Red;
-                this.labelAvailable.Text = "Rental not available";
+                this.labelAvailable.Text = "Rental not available, rented by: " + CustomerRented();
             }
         }
 
@@ -84,6 +89,37 @@ namespace HobbyManiaManager
         {
             var rentalForm = new RentalForm(Movie, this);
             rentalForm.ShowDialog();
+        }
+
+        private void btnImdbForm_Click(object sender, EventArgs e)
+        {
+            if (Movie != null && !string.IsNullOrEmpty(Movie.ImdbId))
+            {
+                var imdbForm = new ImdbIdForm(Movie.ImdbId);
+                imdbForm.ShowDialog();
+            }
+            }
+            
+        private string CustomerRented()
+        {
+            var movie = Movie;
+            var rental = service.GetMovieRental(movie.Id);
+            if (rental != null)
+            {
+                var customID = rental.CustomerId;
+
+                Customer Custom = customersRepository.GetById(customID);
+                string name = Custom.Name;
+                string id = Custom.Id.ToString();
+                string whorented = name + " ("+id+")";
+                return whorented;
+            }
+            else
+            {
+                return "";
+            }
+
+
         }
     }
 }
