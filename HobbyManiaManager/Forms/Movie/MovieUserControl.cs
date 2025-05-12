@@ -39,14 +39,18 @@ namespace HobbyManiaManager
             this.labelOverview.AutoSize = true;
             this.labelVotesCount.Text = $"{Movie.VoteCount.ToString("N0", cultureInfo)} Votes";
 
+            this.lblGenres.Text = $"Genres: {Movie.GenresAsSting}";
+
             this.pictureBoxAvailable.BorderStyle = BorderStyle.None;
 
             this.circularProgressBarVotes.Value = (int)Math.Round(Movie.VoteAverage * 10);
             this.circularProgressBarVotes.Text = $"{Math.Round(Movie.VoteAverage * 10)}%";
 
-            this.labelOriginalTitle.Location = new Point(this.labelOriginalTitle.Location.X, this.labelTitle.Bottom + 10);
-            this.circularProgressBarVotes.Location = new Point(this.circularProgressBarVotes.Location.X, this.labelOriginalTitle.Bottom + 10);
-            this.labelOverview.Location = new Point(this.circularProgressBarVotes.Right + 10, this.labelOriginalTitle.Bottom + 10);
+
+            this.lblGenres.Location = new Point(this.lblGenres.Location.X, this.labelTitle.Bottom + 5);
+            this.labelOriginalTitle.Location = new Point(this.labelOriginalTitle.Location.X, this.lblGenres.Bottom + 5);
+            this.circularProgressBarVotes.Location = new Point(this.circularProgressBarVotes.Location.X, this.labelOriginalTitle.Bottom + 5);
+            this.labelOverview.Location = new Point(this.circularProgressBarVotes.Right + 10, this.labelOriginalTitle.Bottom + 5);
             this.labelVotesCount.Location = new Point(this.labelVotesCount.Location.X, this.circularProgressBarVotes.Bottom + 5);
 
             CheckAvailability(movie);
@@ -61,7 +65,6 @@ namespace HobbyManiaManager
                 this.pictureBoxAvailable.BackColor = Color.Green;
                 this.labelAvailable.Text = "Ready to rent";
                 this.buttonStartEndRent.Text = "Start Rent";
-
             }
             else
             {
