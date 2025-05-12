@@ -2,11 +2,8 @@
 using System.Drawing;
 using System.Globalization;
 using System.Reflection.Emit;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Windows.Input;
 using HobbyManiaManager.Forms;
-using HobbyManiaManager.Forms.Ticket;
 using HobbyManiaManager.Models;
 
 namespace HobbyManiaManager
@@ -16,9 +13,9 @@ namespace HobbyManiaManager
         private CultureInfo cultureInfo;
         private RentalService service;
         private Movie Movie;
-        private Rental rental;
         private Customer Customer;
         private CustomersRepository customersRepository;
+
 
         public MovieUserControl()
         {
@@ -90,27 +87,8 @@ namespace HobbyManiaManager
 
         private void buttonStartEndRent_Click(object sender, EventArgs e)
         {
-
-            if (buttonStartEndRent.Text == "End Rent")
-            {
-                var enddate = DateTime.Now;
-                
-
-                Rental rental1 = service.GetMovieRental(Movie.Id);
-                Customer customer1 = CustomersRepository.Instance.GetById(rental1.CustomerId);
-                service.FinishRental(customer1, Movie, null, enddate);
-                Movie movie1 = Movie;
-
-                var ticketform = new TicketForm(customer1,rental1, movie1, enddate);
-                ticketform.ShowDialog();
-                this.Refresh();
-            } 
-            else if (buttonStartEndRent.Text == "Start Rent")
-            {
-                var rentalForm = new RentalForm(Movie, this);
-                rentalForm.ShowDialog();
-            }
-
+            var rentalForm = new RentalForm(Movie, this);
+            rentalForm.ShowDialog();
         }
 
         private void btnImdbForm_Click(object sender, EventArgs e)
