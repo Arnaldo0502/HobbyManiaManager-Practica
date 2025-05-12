@@ -38,7 +38,8 @@
             this.pictureBoxAvailable = new System.Windows.Forms.PictureBox();
             this.buttonStartEndRent = new System.Windows.Forms.Button();
             this.circularProgressBarVotes = new CircularProgressBar.CircularProgressBar();
-            this.labelVotesCount = new System.Windows.Forms.Label();
+            this.labelVotesCount = new System.Windows.Forms.Label();            
+            this.lblGenres = new System.Windows.Forms.Label();
             this.btnImdbForm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvailable)).BeginInit();
@@ -86,7 +87,7 @@
             // labelOverview
             // 
             this.labelOverview.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOverview.Location = new System.Drawing.Point(303, 83);
+            this.labelOverview.Location = new System.Drawing.Point(302, 100);
             this.labelOverview.MaximumSize = new System.Drawing.Size(600, 0);
             this.labelOverview.MinimumSize = new System.Drawing.Size(600, 18);
             this.labelOverview.Name = "labelOverview";
@@ -133,7 +134,7 @@
             this.circularProgressBarVotes.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.circularProgressBarVotes.InnerMargin = 2;
             this.circularProgressBarVotes.InnerWidth = -1;
-            this.circularProgressBarVotes.Location = new System.Drawing.Point(217, 83);
+            this.circularProgressBarVotes.Location = new System.Drawing.Point(216, 100);
             this.circularProgressBarVotes.MarqueeAnimationSpeed = 2000;
             this.circularProgressBarVotes.Name = "circularProgressBarVotes";
             this.circularProgressBarVotes.OuterColor = System.Drawing.Color.Gray;
@@ -158,13 +159,23 @@
             // labelVotesCount
             // 
             this.labelVotesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVotesCount.Location = new System.Drawing.Point(214, 166);
+            this.labelVotesCount.Location = new System.Drawing.Point(213, 183);
             this.labelVotesCount.Name = "labelVotesCount";
             this.labelVotesCount.Size = new System.Drawing.Size(80, 23);
             this.labelVotesCount.TabIndex = 10;
             this.labelVotesCount.Text = "Votes Count";
             this.labelVotesCount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // lblGenres
+            // 
+            this.lblGenres.AutoSize = true;
+            this.lblGenres.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGenres.Location = new System.Drawing.Point(213, 41);
+            this.lblGenres.Name = "lblGenres";
+            this.lblGenres.Size = new System.Drawing.Size(57, 18);
+            this.lblGenres.TabIndex = 11;
+            this.lblGenres.Text = "Genres";
+
             // btnImdbForm
             // 
             this.btnImdbForm.Image = ((System.Drawing.Image)(resources.GetObject("btnImdbForm.Image")));
@@ -179,6 +190,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblGenres);
             this.Controls.Add(this.btnImdbForm);
             this.Controls.Add(this.labelVotesCount);
             this.Controls.Add(this.circularProgressBarVotes);
@@ -211,6 +223,7 @@
         private System.Windows.Forms.Button buttonStartEndRent;
         private CircularProgressBar.CircularProgressBar circularProgressBarVotes;
         private System.Windows.Forms.Label labelVotesCount;
+        private System.Windows.Forms.Label lblGenres;
         private System.Windows.Forms.Button btnImdbForm;
     }
 }
