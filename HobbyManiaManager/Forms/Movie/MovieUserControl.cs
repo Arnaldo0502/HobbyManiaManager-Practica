@@ -13,6 +13,7 @@ namespace HobbyManiaManager
         private CultureInfo cultureInfo;
         private RentalService service;
         private Movie Movie;
+        public Action refresh;
 
         public MovieUserControl()
         {
@@ -81,6 +82,8 @@ namespace HobbyManiaManager
         {
             var rentalForm = new RentalForm(Movie, this);
             rentalForm.ShowDialog();
+            refresh?.Invoke();
+            this.Refresh();
         }
     }
 }
