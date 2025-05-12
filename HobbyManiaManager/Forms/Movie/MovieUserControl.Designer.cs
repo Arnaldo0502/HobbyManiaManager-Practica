@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovieUserControl));
             this.labelTitle = new System.Windows.Forms.Label();
             this.pictureBoxPoster = new System.Windows.Forms.PictureBox();
             this.labelOriginalTitle = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@
             this.buttonStartEndRent = new System.Windows.Forms.Button();
             this.circularProgressBarVotes = new CircularProgressBar.CircularProgressBar();
             this.labelVotesCount = new System.Windows.Forms.Label();
+            this.btnImdbForm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPoster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvailable)).BeginInit();
             this.SuspendLayout();
@@ -67,14 +69,14 @@
             this.labelOriginalTitle.Location = new System.Drawing.Point(212, 54);
             this.labelOriginalTitle.MaximumSize = new System.Drawing.Size(600, 0);
             this.labelOriginalTitle.Name = "labelOriginalTitle";
-            this.labelOriginalTitle.Size = new System.Drawing.Size(600, 24);
+            this.labelOriginalTitle.Size = new System.Drawing.Size(600, 0);
             this.labelOriginalTitle.TabIndex = 2;
             this.labelOriginalTitle.Text = "Original Title";
             // 
             // labelId
             // 
             this.labelId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelId.Location = new System.Drawing.Point(817, 3);
+            this.labelId.Location = new System.Drawing.Point(813, 0);
             this.labelId.Name = "labelId";
             this.labelId.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.labelId.Size = new System.Drawing.Size(90, 26);
@@ -163,10 +165,21 @@
             this.labelVotesCount.Text = "Votes Count";
             this.labelVotesCount.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // btnImdbForm
+            // 
+            this.btnImdbForm.Image = ((System.Drawing.Image)(resources.GetObject("btnImdbForm.Image")));
+            this.btnImdbForm.Location = new System.Drawing.Point(835, 221);
+            this.btnImdbForm.Name = "btnImdbForm";
+            this.btnImdbForm.Size = new System.Drawing.Size(68, 38);
+            this.btnImdbForm.TabIndex = 11;
+            this.btnImdbForm.UseVisualStyleBackColor = true;
+            this.btnImdbForm.Click += new System.EventHandler(this.btnImdbForm_Click);
+            // 
             // MovieUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnImdbForm);
             this.Controls.Add(this.labelVotesCount);
             this.Controls.Add(this.circularProgressBarVotes);
             this.Controls.Add(this.buttonStartEndRent);
@@ -198,5 +211,6 @@
         private System.Windows.Forms.Button buttonStartEndRent;
         private CircularProgressBar.CircularProgressBar circularProgressBarVotes;
         private System.Windows.Forms.Label labelVotesCount;
+        private System.Windows.Forms.Button btnImdbForm;
     }
 }
