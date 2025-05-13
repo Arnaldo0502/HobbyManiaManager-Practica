@@ -13,12 +13,9 @@ namespace HobbyManiaManager
         private CultureInfo cultureInfo;
         private RentalService service;
         private Movie Movie;
-<<<<<<< HEAD
         private Rental rental;
         private Customer Customer;
         private CustomersRepository customersRepository;
-=======
->>>>>>> parent of 818d86c (Create a Ticket Form)
 
         public MovieUserControl()
         {
