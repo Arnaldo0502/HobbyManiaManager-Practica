@@ -16,11 +16,17 @@ namespace HobbyManiaManager
         private CultureInfo cultureInfo;
         private RentalService service;
         private Movie Movie;
+        public Action refresh;
+        private Customer Customer;
+        private CustomersRepository customersRepository;
+        
         public MovieUserControl()
         {
             InitializeComponent();
             this.cultureInfo = new CultureInfo("es-ES");
             this.service = new RentalService();
+            customersRepository = CustomersRepository.Instance;
+
         }
 
         public void Load(Movie movie)
@@ -41,14 +47,18 @@ namespace HobbyManiaManager
             this.labelOverview.AutoSize = true;
             this.labelVotesCount.Text = $"{Movie.VoteCount.ToString("N0", cultureInfo)} Votes";
 
+            this.lblGenres.Text = $"Genres: {Movie.GenresAsSting}";
+
             this.pictureBoxAvailable.BorderStyle = BorderStyle.None;
 
             this.circularProgressBarVotes.Value = (int)Math.Round(Movie.VoteAverage * 10);
             this.circularProgressBarVotes.Text = $"{Math.Round(Movie.VoteAverage * 10)}%";
 
-            this.labelOriginalTitle.Location = new Point(this.labelOriginalTitle.Location.X, this.labelTitle.Bottom + 10);
-            this.circularProgressBarVotes.Location = new Point(this.circularProgressBarVotes.Location.X, this.labelOriginalTitle.Bottom + 10);
-            this.labelOverview.Location = new Point(this.circularProgressBarVotes.Right + 10, this.labelOriginalTitle.Bottom + 10);
+
+            this.lblGenres.Location = new Point(this.lblGenres.Location.X, this.labelTitle.Bottom + 5);
+            this.labelOriginalTitle.Location = new Point(this.labelOriginalTitle.Location.X, this.lblGenres.Bottom + 5);
+            this.circularProgressBarVotes.Location = new Point(this.circularProgressBarVotes.Location.X, this.labelOriginalTitle.Bottom + 5);
+            this.labelOverview.Location = new Point(this.circularProgressBarVotes.Right + 10, this.labelOriginalTitle.Bottom + 5);
             this.labelVotesCount.Location = new Point(this.labelVotesCount.Location.X, this.circularProgressBarVotes.Bottom + 5);
 
             CheckAvailability(movie);
@@ -63,13 +73,12 @@ namespace HobbyManiaManager
                 this.pictureBoxAvailable.BackColor = Color.Green;
                 this.labelAvailable.Text = "Ready to rent";
                 this.buttonStartEndRent.Text = "Start Rent";
-
             }
             else
             {
                 this.buttonStartEndRent.Text = "End Rent";
                 this.pictureBoxAvailable.BackColor = Color.Red;
-                this.labelAvailable.Text = "Rental not available";
+                this.labelAvailable.Text = "Rental not available, rented by: " + CustomerRented();
             }
         }
 
@@ -81,18 +90,16 @@ namespace HobbyManiaManager
 
         private void buttonStartEndRent_Click(object sender, EventArgs e)
         {
-
             if (buttonStartEndRent.Text == "End Rent")
             {
                 var enddate = DateTime.Now;
-                
 
                 Rental rental1 = service.GetMovieRental(Movie.Id);
                 Customer customer1 = CustomersRepository.Instance.GetById(rental1.CustomerId);
                 service.FinishRental(customer1, Movie, null, enddate);
                 Movie movie1 = Movie;
 
-                var ticketform = new TicketForm(customer1,rental1, movie1, enddate);
+                var ticketform = new TicketForm(customer1, rental1, movie1, enddate);
                 ticketform.ShowDialog();
                 this.Refresh();
             } 
@@ -100,8 +107,39 @@ namespace HobbyManiaManager
             {
                 var rentalForm = new RentalForm(Movie, this);
                 rentalForm.ShowDialog();
+                refresh?.Invoke(); // Llamamos al delegado si no es null
+                this.Refresh();
             }
+        }
 
+
+        private void btnImdbForm_Click(object sender, EventArgs e)
+        {
+            if (Movie != null && !string.IsNullOrEmpty(Movie.ImdbId))
+            {
+                var imdbForm = new ImdbIdForm(Movie.ImdbId);
+                imdbForm.ShowDialog();
+            }
+        }
+            
+        private string CustomerRented()
+        {
+            var movie = Movie;
+            var rental = service.GetMovieRental(movie.Id);
+            if (rental != null)
+            {
+                var customID = rental.CustomerId;
+
+                Customer Custom = customersRepository.GetById(customID);
+                string name = Custom.Name;
+                string id = Custom.Id.ToString();
+                string whorented = name + " ("+id+")";
+                return whorented;
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }
