@@ -16,9 +16,6 @@ namespace HobbyManiaManager
         private CultureInfo cultureInfo;
         private RentalService service;
         private Movie Movie;
-        private Rental rental;
-        private Customer customer;
-
         public MovieUserControl()
         {
             InitializeComponent();
