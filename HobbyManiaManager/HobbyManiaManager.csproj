@@ -70,6 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Forms\Ticket\TicketForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +82,8 @@
     <Compile Include="Forms\ImdbIdForm.Designer.cs">
       <DependentUpon>ImdbIdForm.cs</DependentUpon>
     </Compile>
+=======
+>>>>>>> parent of 818d86c (Create a Ticket Form)
     <Compile Include="Utils\DateTimeUtils.cs" />
     <Compile Include="Forms\Movie\CatalogForm.cs">
       <SubType>Form</SubType>
@@ -159,9 +162,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Rental\RentalHistoryForm.resx">
       <DependentUpon>RentalHistoryForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Ticket\TicketForm.resx">
-      <DependentUpon>TicketForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
