@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using HobbyManiaManager.Forms.Ticket;
 using HobbyManiaManager.Models;
 
 namespace HobbyManiaManager.Forms
@@ -146,6 +147,12 @@ namespace HobbyManiaManager.Forms
                 // Ending an existing rental
                 _rentalService.FinishRental(_customer, _movie, this.textBoxRentalNotes.Text, dateTimePickerEnd.Value);
                 MessageBox.Show($"Rent finished for movie: {_movie.Title}.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var enddate = DateTime.Now;
+
+                TicketForm ticketform = new TicketForm(_customer, _rental, _movie, enddate);
+                ticketform.ShowDialog();
+                this.Refresh();
+
             }
             this._parent?.Refresh();
             this.Dispose();
